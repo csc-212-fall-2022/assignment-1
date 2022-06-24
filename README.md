@@ -1,8 +1,18 @@
+# Assignment 1: Getting Started
+
+The purpose of this assignment is to make sure that you have a development environment set up and
+have basic familiarity with working with git.
+
+## Environment Prerequisites
+
+You are welcome to use whatever tools you want, though I recommend getting comfortable with some form of \*nix command line, be that Mac OS, Linux or WSL.
+
+
 # :wave: The Basics of GitHub 
 
 ## 🤓 Course overview and learning outcomes 
 
-The goal of this course is to give you a brief introduction to GitHub. We’ll also provide you with materials for further learning and a few ideas to get you started on our platform. 🚀
+The goal of this course is to give you a brief introduction to GitHub. We’ll also provide you with materials for further learning and a few ideas to get you started on our platform. 
 
 ## :octocat: Git and GitHub
 
@@ -71,6 +81,13 @@ To learn more about using GitHub’s flavor of markdown, read ["Basic Writing an
 ### Engaging with the GitHub community
 
 The GitHub community is vast. There are many types of people who use GitHub in their day to day—students like you, professional developers, hobbyists working on open source projects, and explorers who are just jumping into the world of software development on their own. There are many ways you can interact with the larger GitHub community, but here are three places where you can start. 
+* Unix Makefiles               = Generates standard UNIX makefiles.
+  Ninja                        = Generates build.ninja files.
+  Ninja Multi-Config           = Generates build-<Config>.ninja files.
+  Watcom WMake                 = Generates Watcom WMake makefiles.
+  CodeBlocks - Ninja           = Generates CodeBlocks project files.
+  CodeBlocks - Unix Makefiles  = Generates CodeBlocks project files.
+  CodeLite - Ninja             = Generates CodeLite project files.
 
 #### Starring repositories 
 
