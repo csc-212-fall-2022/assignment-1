@@ -3,115 +3,201 @@
 The purpose of this assignment is to make sure that you have a development environment set up and
 have basic familiarity with working with git.
 
-## Environment Prerequisites
+## Environment Setup
 
 You are welcome to use whatever tools you want, though I recommend getting comfortable with some form of \*nix command line, be that Mac OS, Linux or WSL.
 
+Make sure you have the following installed:
+- A compiler that supports C++17 (just about everything)
+- git
+- clang-format
+- clang-tidy
+- cmake
+- make
 
-# :wave: The Basics of GitHub 
+## Getting the Assignment
 
-## 🤓 Course overview and learning outcomes 
+The assignment is set up as a "template" in Github. If you want to keep your homework on Github, click the "Use this template" button,
+create a repository and then clone it as below, but swap in the URL of your repo.
 
-The goal of this course is to give you a brief introduction to GitHub. We’ll also provide you with materials for further learning and a few ideas to get you started on our platform. 
+If you don't want to use Github, in the terminal, go to the directory where you want to work and clone the assignment:
+```
+git clone https://github.com/csc-212-fall-2022/assignment-1.git
+```
 
-## :octocat: Git and GitHub
+See "The Basics of GitHub" below for more information on git and Github.
 
-Git is a **distributed Version Control System (VCS)**, which means it is a useful tool for easily tracking changes to your code, collaborating, and sharing. With Git you can track the changes you make to your project so you always have a record of what you’ve worked on and can easily revert back to an older version if need be. It also makes working with others easier—groups of people can work together on the same project and merge their changes into one final source!
+## A Tour of the Assignment
 
-GitHub is a way to use the same power of Git all online with an easy-to-use interface. It’s used across the software world and beyond to collaborate and maintain the history of projects.
+The basic pattern for using `cmake` is to create a `build` directory:
+```
+mkdir build
+```
+Then, we change to the `build` directory and run `cmake ..` (the `..` points `cmake` to a project in the parent directory, i.e. the main assignment directory, where our `CMakeLists.txt` is.)
+Unfortunately, we get an error!
+```
+ csar@sebastian : ~/Documents/teaching/fall22/csc212-assignment1/build : cmake ..
+-- The C compiler identification is GNU 12.1.0
+-- The CXX compiler identification is GNU 12.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Excluding/home/csar/Documents/teaching/fall22/csc212-assignment1/build/CMakeFiles/3.23.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+-- Excluding/home/csar/Documents/teaching/fall22/csc212-assignment1/external/doctest/doctest.h
+-- Configuring done
+CMake Error at CMakeLists.txt:19 (add_library):
+  Cannot find source file:
 
-GitHub is home to some of the most advanced technologies in the world. Whether you're visualizing data or building a new game, there's a whole community and set of tools on GitHub that can get you to the next step. This course starts with the basics of GitHub, but we'll dig into the rest later.
+    assignment1/MergeSort.cpp
 
-## :octocat: Understanding the GitHub flow 
-
-The GitHub flow is a lightweight workflow that allows you to experiment and collaborate on your projects easily, without the risk of losing your previous work.
-
-### Repositories
-
-A repository is where your project work happens--think of it as your project folder. It contains all of your project’s files and revision history.  You can work within a repository alone or invite others to collaborate with you on those files.
-
-### Cloning 
-
-When a repository is created with GitHub, it’s stored remotely in the ☁️. You can clone a repository to create a local copy on your computer and then use Git to sync the two. This makes it easier to fix issues, add or remove files, and push larger commits. You can also use the editing tool of your choice as opposed to the GitHub UI. Cloning a repository also pulls down all the repository data that GitHub has at that point in time, including all versions of every file and folder for the project! This can be helpful if you experiment with your project and then realize you liked a previous version more. 
-To learn more about cloning, read ["Cloning a Repository"](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository). 
-
-### Committing and pushing
-**Committing** and **pushing** are how you can add the changes you made on your local machine to the remote repository in GitHub. That way your instructor and/or teammates can see your latest work when you’re ready to share it. You can make a commit when you have made changes to your project that you want to “checkpoint.” You can also add a helpful **commit message** to remind yourself or your teammates what work you did (e.g. “Added a README with information about our project”).
-
-Once you have a commit or multiple commits that you’re ready to add to your repository, you can use the push command to add those changes to your remote repository. Committing and pushing may feel new at first, but we promise you’ll get used to it 🙂
-
-## 💻 GitHub terms to know 
-
-### Repositories 
-We mentioned repositories already, they are where your project work happens, but let’s talk a bit more about the details of them! As you work more on GitHub you will have many repositories which may feel confusing at first. Fortunately, your ["GitHub dashboard"](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/about-your-personal-dashboard) helps to easily navigate to your repositories and see useful information about them. Make sure you’re logged in to see it!
-
-Repositories also contain **README**s. You can add a README file to your repository to tell other people why your project is useful, what they can do with your project, and how they can use it. We are using this README to communicate how to learn Git and GitHub with you. 😄 
-To learn more about repositories read ["Creating, Cloning, and Archiving Repositories](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-repositories) and ["About README's"](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes). 
-
-### Branches
-You can use branches on GitHub to isolate work that you do not want merged into your final project just yet. Branches allow you to develop features, fix bugs, or safely experiment with new ideas in a contained area of your repository. Typically, you might create a new branch from the default branch of your repository—main. This makes a new working copy of your repository for you to experiment with. Once your new changes have been reviewed by a teammate, or you are satisfied with them, you can merge your changes into the default branch of your repository.
-To learn more about branching, read ["About Branches"](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches).
-
-### Forks
-A fork is another way to copy a repository, but is usually used when you want to contribute to someone else’s project. Forking a repository allows you to freely experiment with changes without affecting the original project and is very popular when contributing to open source software projects!
-To learn more about forking, read ["Fork a repo"](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
-
-### Pull requests
-When working with branches, you can use a pull request to tell others about the changes you want to make and ask for their feedback. Once a pull request is opened, you can discuss and review the potential changes with collaborators and add more changes if need be. You can add specific people as reviewers of your pull request which shows you want their feedback on your changes! Once a pull request is ready-to-go, it can be merged into your main branch.
-To learn more about pull requests, read ["About Pull Requests"](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests). 
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
 
 
-### Issues
-Issues are a way to track enhancements, tasks, or bugs for your work on GitHub. Issues are a great way to keep track of all the tasks you want to work on for your project and let others know what you plan to work on. You can also use issues to tell a favorite open source project about a bug you found or a feature you think would be great to add!
+CMake Error at CMakeLists.txt:20 (add_library):
+  Cannot find source file:
 
-For larger projects, you can keep track of many issues on a project board. GitHub Projects help you organize and prioritize your work and you can read more about them [in this "About Project boards document](https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards). You likely won’t need a project board for your assignments, but once you move on to even bigger projects, they’re a great way to organize your team’s work!
-You can also link together pull requests and issues to show that a fix is in progress and to automatically close the issue when someone merges the pull request.
-To learn more about issues and linking them to your pull requests, read ["About Issues"](https://docs.github.com/en/github/managing-your-work-on-github/about-issues). 
+    assignment1/BinarySearch.cpp
 
-### Your user profile
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
 
-Your profile page tells people the story of your work through the repositories you're interested in, the contributions you've made, and the conversations you've had. You can also give the world a unique view into who you are with your profile README. You can use your profile to let future employers know all about you! 
-To learn more about your user profile and adding and updating your profile README, read ["Managing Your Profile README"](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme). 
 
-### Using markdown on GitHub 
+CMake Error at CMakeLists.txt:19 (add_library):
+  No SOURCES given to target: MergeSort
 
-You might have noticed already, but you can add some fun styling to your issues, pull requests, and files. ["Markdown"](https://guides.github.com/features/mastering-markdown/) is an easy way to style your issues, pull requests, and files with some simple syntax. This can be helpful to organize your information and make it easier for others to read. You can also drop in gifs and images to help convey your point!
-To learn more about using GitHub’s flavor of markdown, read ["Basic Writing and Formatting Syntax"](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax). 
 
-### Engaging with the GitHub community
+CMake Error at CMakeLists.txt:20 (add_library):
+  No SOURCES given to target: BinarySearch
 
-The GitHub community is vast. There are many types of people who use GitHub in their day to day—students like you, professional developers, hobbyists working on open source projects, and explorers who are just jumping into the world of software development on their own. There are many ways you can interact with the larger GitHub community, but here are three places where you can start. 
-* Unix Makefiles               = Generates standard UNIX makefiles.
-  Ninja                        = Generates build.ninja files.
-  Ninja Multi-Config           = Generates build-<Config>.ninja files.
-  Watcom WMake                 = Generates Watcom WMake makefiles.
-  CodeBlocks - Ninja           = Generates CodeBlocks project files.
-  CodeBlocks - Unix Makefiles  = Generates CodeBlocks project files.
-  CodeLite - Ninja             = Generates CodeLite project files.
 
-#### Starring repositories 
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+```
 
-If you find a repository interesting or you want to keep track of it, star it! When you star a repository it’s also used as a signal to surface better recommendations on github.com/explore. If you’d like to get back to your starred repositories you can do so via your user profile. 
-To learn  more about starring repositories, read ["Saving Repositories with Stars"](https://docs.github.com/en/github/getting-started-with-github/saving-repositories-with-stars). 
+What happened? The output says we're missing `assingment1/MergeSort.cpp` and `assignment1/BinarySearch.cpp`.
+If we take a look at `CMakeLists.txt`, we can see that there are two library "targets" declared:
+```cmake
+add_library(MergeSort assignment1/MergeSort.hpp assignment1/MergeSort.cpp)
+add_library(BinarySearch assignment1/BinarySearch.cpp assignment1/BinarySearch.hpp)
+```
+Each looks for the appropriate `*.hpp` and `*.cpp` files. If I look at the contents of the `assignment1` directory,
+I see the `*.cpp` files are missing. This is the output of `tree assignment1`. There are some `*.cpp` files, but they have `test` in the name.
+(If you look at `CMakeLists.txt` again, you'll notice that they get used to define test targets.)
+```bash
+assignment1
+├── BinarySearch.hpp
+├── BinarySearch.test.cpp
+├── MergeSort.hpp
+└── MergeSort.test.cpp
+```
 
-#### Following users 
+In future assignments, I'll do my best to remember to create the `.cpp` files in the template too. I left them out
+to give you a tour of `CMakeLists.txt`.
 
-You can follow people on GitHub to receive notifications about their activity and discover projects in their communities. When you follow a user, their public GitHub activity will show up on your dashboard so you can see all the cool things they are working on. 
-To learn more about following users, read ["Following People"](https://docs.github.com/en/github/getting-started-with-github/following-people).
+### Getting the Build Working
 
-#### Browsing GitHub Explore 
+Now that we saw why `cmake` failed, we need to fix it. Let's just create the missing files:
+```bash
+touch assignment1/MergeSort.cpp
+touch assignment1/BinarySearch.cpp
+```
+Change back to your `build` directory and run `cmake ..` again. This time, it should succeed.
 
-GitHub Explore is a great place to do just that … explore :smile: You can find new projects, events, and developers to interact with.
+What have we done so far? Surely our project shouldn't compiled, we haven't actually implemented anything.
+`cmake` hasn't actually compiled anything, it's generated a Makefiles in the `build` directory (and some additional Makefiles in the subdirectories of `build`).
+CMake supports a number of different [generators](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html), but
+make is the default. You can try to compile the project by running `cmake --build .`. Unsurprisingly, this will fail,
+since we didn't write any code in those `cpp` files.
 
-You can check out the GitHub Explore website [at github.com/explore](https://github.com/explore). The more you interact with GitHub the more tailored your Explore view will be. 
+Why are we bothering with CMake? It's true, in this class, we're probably not going to have any projects so large
+that we couldn't just compile manually. However, it's good to get familiar with some standard tools of the C++ world.
+It also means that we can easily run tests and tools like `clang-tidy` and `clang-format`.
 
-## 📝 Optional next steps 
+### The Coding Part
 
-* Open a pull request and let your teacher know that you’ve finished this course.  
-* Create a new markdown file in this repository. Let them know what you learned and what you are still confused about! Experiment with different styles!
-* Create your profile README. Let the world know a little bit more about you! What are you interested in learning? What are you working on? What's your favorite hobby? Learn more about creating your profile README in the document, ["Managing Your Profile README"](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme).
-* Go to your user dashboard and create a new repository. Experiment with the features within that repository to familiarize yourself with them. 
-* [Let us know what you liked or didn’t like about the content of this course](https://support.github.com/contact/education). What would you like to see more of? What would be interesting or helpful to your learning journey? 
+For this assigment, you need to implement the two functions described in `MergeSort.hpp` and `BinarySearch.hpp`:
+
+```c++
+std::vector<int> MergeSort(const std::vector<int> &);
+
+int BinarySearch(const std::vector<int> &, int);
+```
+
+When you're ready, build everything with `cmake --build .`. You should see output that looks like:
+```
+Consolidate compiler generated dependencies of target MergeSort
+[ 12%] Building CXX object CMakeFiles/MergeSort.dir/assignment1/MergeSort.cpp.o
+[ 25%] Linking CXX static library libMergeSort.a
+[ 25%] Built target MergeSort
+Consolidate compiler generated dependencies of target BinarySearch
+[ 37%] Building CXX object CMakeFiles/BinarySearch.dir/assignment1/BinarySearch.cpp.o
+[ 50%] Linking CXX static library libBinarySearch.a
+[ 50%] Built target BinarySearch
+Consolidate compiler generated dependencies of target MergeSortTests
+[ 62%] Building CXX object CMakeFiles/MergeSortTests.dir/assignment1/MergeSort.test.cpp.o
+[ 75%] Linking CXX executable MergeSortTests
+[ 75%] Built target MergeSortTests
+[ 87%] Building CXX object CMakeFiles/BinarySearchTests.dir/assignment1/BinarySearch.test.cpp.o
+[100%] Linking CXX executable BinarySearchTests
+[100%] Built target BinarySearchTests
+```
+
+If you're working on (say) the MergeSort function and haven't touched BinarySearch yet, you can build only the MergeSort target
+by running `cmake --build . --target MergeSort`.
+
+### Run the tests
+
+Since we built all the targets above, we built the two test binaries. We could run them individually (e.g. `./MergeSortTests`),
+but we can also run them all with CTest. Below is the verbose CTest output (from `ctest -V`).
+```
+
+UpdateCTestConfiguration  from :/home/csar/Documents/teaching/fall22/csc212-assignment1/build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/home/csar/Documents/teaching/fall22/csc212-assignment1/build/DartConfiguration.tcl
+Test project /home/csar/Documents/teaching/fall22/csc212-assignment1/build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: MergeSortTests
+
+1: Test command: /home/csar/Documents/teaching/fall22/csc212-assignment1/build/MergeSortTests
+1: Test timeout computed to be: 10000000
+1: [doctest] doctest version is "2.4.9"
+1: [doctest] run with "--help" for options
+1: ===============================================================================
+1: [doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+1: [doctest] assertions: 2 | 2 passed | 0 failed |
+1: [doctest] Status: SUCCESS!
+1/2 Test #1: MergeSortTests ...................   Passed    0.01 sec
+test 2
+    Start 2: BinarySearchTests
+
+2: Test command: /home/csar/Documents/teaching/fall22/csc212-assignment1/build/BinarySearchTests
+2: Test timeout computed to be: 10000000
+2: [doctest] doctest version is "2.4.9"
+2: [doctest] run with "--help" for options
+2: ===============================================================================
+2: [doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+2: [doctest] assertions: 4 | 4 passed | 0 failed |
+2: [doctest] Status: SUCCESS!
+2/2 Test #2: BinarySearchTests ................   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.02 sec
+```
+
+### Code Quality, Memory Leaks and the Like
 
 ## 📚  Resources 
 * [A short video explaining what GitHub is](https://www.youtube.com/watch?v=w3jLJU7DT5E&feature=youtu.be) 
