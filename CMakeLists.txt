@@ -16,6 +16,8 @@ find_package(Doctest REQUIRED)
 
 include(cmake/ClangFormat.cmake)
 
+set(CMAKE_MEMORYCHECK_COMMAND valgrind)
+
 # Use include(CTest) rather than enable_testing() to get Valgrind working
 include(CTest)
 
