@@ -14,6 +14,12 @@ Make sure you have the following installed:
 - clang-tidy
 - cmake
 - make
+- valgrind (or Dr Memory if you're using Windows; warning: I have not tested Dr Memory)
+
+> **Warning**
+> Installing `clang-tidy` on OS X look like they might be a massive pain.
+> If we can't figure it out, comment out lines 22, 23, 28 and 29 of `CMakeLists.txt`.
+> `clang-format` should be installable via Homebrew. If not, comment out line 17.
 
 ## Getting the Assignment
 
@@ -25,7 +31,7 @@ If you don't want to use Github, in the terminal, go to the directory where you 
 git clone https://github.com/csc-212-fall-2022/assignment-1.git
 ```
 
-See "The Basics of GitHub" below for more information on git and Github.
+The Resources section down below has various links about git and Github.
 
 ## A Tour of the Assignment
 
@@ -198,6 +204,16 @@ Total Test time (real) =   0.02 sec
 ```
 
 ### Code Quality, Memory Leaks and the Like
+
+I've set up the project with some linting tools:
+- `clang-tidy` handles linting and pushes you towards "modern" C++. It will run automatically.
+- `clang-format` formats your code consistently. To run `clang-format`, in your `build` directory, there are two `make` targets (or `ninja` targets or...):
+    - `make format_check` -- check that your code is properly formatted
+    - `make format_all` -- format your code
+
+The project is also set up to detect memory leaks with `valgrind`. You can run `valgrind` by running `ctest -T memcheck`.
+
+In future assignments, I'll make having a clear Valgrind, `clang-tidy` and `clang-format` check part of the assignment, but for now, your goal is to get things working.
 
 ## 📚  Resources 
 * [A short video explaining what GitHub is](https://www.youtube.com/watch?v=w3jLJU7DT5E&feature=youtu.be) 
