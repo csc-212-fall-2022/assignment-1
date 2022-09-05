@@ -3,7 +3,7 @@
         "dockerfile": "./Dockerfile",
         "context": ".."
     },
-    "containerUser": "coder",
+    "containerUser": "vscode",
     "customizations": {
         "vscode": {
             "extensions": [
